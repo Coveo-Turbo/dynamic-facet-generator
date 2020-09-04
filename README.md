@@ -4,6 +4,18 @@ Generates Facets dynamicaly for a specific category
 
 Disclaimer: This component was built by the community at large and is not an official Coveo JSUI Component. Use this component at your own risk.
 
+## Usage
+
+```
+<div class="coveo-facet-column">
+  <div class="CoveoDynamicFacetManager">
+    <div class="CoveoDynamicFacet" data-field="@prd_brand" data-title="Brand"></div>
+    <div class="CoveoDynamicFacet" data-field="@prd_category" data-title="Category Type"></div>
+    <div class="CoveoDynamicFacetGenerator" data-depends-on="@prd_category"></div>
+  </div>
+</div>
+```
+
 ## Getting Started
 
 1. Install the component into your project.

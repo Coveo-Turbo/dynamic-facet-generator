@@ -4,6 +4,7 @@
     "description": "Generates Facets dynamically for a specific category",
     "main": "dist/index.js",
     "scripts": {
+        "doc": "typedoc --out docs src/DynamicFacetGenerator.ts",
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "coveops build DynamicFacetGenerator --template typescript",
         "watch": "coveops build DynamicFacetGenerator --template typescript --watch",
@@ -22,6 +23,8 @@
         "coveo-search-ui": "^2.9659.2"
     },
     "devDependencies": {
-        "@coveops/cli": "^0.11.0"
+        "@coveops/cli": "^0.11.0",
+        "typedoc": "^0.19.0",
+        "typescript": "^4.0.2"
     }
 }
