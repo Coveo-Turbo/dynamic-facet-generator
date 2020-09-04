@@ -4,17 +4,9 @@ Generates Facets dynamicaly for a specific category
 
 Disclaimer: This component was built by the community at large and is not an official Coveo JSUI Component. Use this component at your own risk.
 
-## Usage
+## Documentation
 
-```
-<div class="coveo-facet-column">
-  <div class="CoveoDynamicFacetManager">
-    <div class="CoveoDynamicFacet" data-field="@prd_brand" data-title="Brand"></div>
-    <div class="CoveoDynamicFacet" data-field="@prd_category" data-title="Category Type"></div>
-    <div class="CoveoDynamicFacetGenerator" data-depends-on="@prd_category"></div>
-  </div>
-</div>
-```
+Visit [documentation page](https://coveo-turbo.github.io/dynamic-facet-generator/classes/dynamicfacetgenerator.html) for full component detail:
 
 ## Getting Started
 
@@ -51,6 +43,49 @@ Place the component in your markup:
 ```html
 <div class="CoveoDynamicFacetGenerator"></div>
 ```
+
+## Usage
+
+Add the `CoveoDynamicFacetGenerator` along with the rest of the Facets.
+
+```html
+<div class="coveo-facet-column">
+  <div class="CoveoDynamicFacetManager">
+    <div class="CoveoDynamicFacet" data-field="@prd_brand" data-title="Brand"></div>
+    <div class="CoveoDynamicFacet" data-field="@prd_category" data-title="Category Type"></div>
+    <div class="CoveoDynamicFacetGenerator" data-depends-on="@prd_category"></div>
+  </div>
+</div>
+```
+
+Before you initialize the UI, make sure you pass the dictionary to the DynamicFacetGenerator component
+
+```javascript
+document.addEventListener('DOMContentLoaded', function () {
+  Coveo.SearchEndpoint.configureSampleEndpointV2();
+  Coveo.init(document.body, {
+    DynamicFacetGenerator: {
+      dictionary: {
+        "Computer": ["Total Storage", "Processor Type"],
+        "Phone": ["Screen Size", "Battery Life", "Color"]
+      },
+      transformer: (value) => {
+        return { field: (`@prd_${value.replace(/\W/g, '')}` || '').toLowerCase(), facetTitle: value };
+      },
+    }
+  });
+})
+```
+
+### Dictionary
+If the dictionary is not defined at the moment you configure the component options, use the [getDictionaryPromise](https://coveo-turbo.github.io/dynamic-facet-generator/interfaces/idynamicfacetgeneratoroptions.html#getdictionarypromise) option.
+That way, instead of passing the facet dictionary as an object, it is being passed as asynchronous function.
+
+
+### Transfomer
+This function allows to transform the dictionary values into fields available in the index. In the above example, the component will generate Facets for `@prd_total_storage` and `@prd_processor_type` whenever the user selects the computer category.
+
+Refer to the [Reference Documentation page](https://coveo-turbo.github.io/dynamic-facet-generator/interfaces/idynamicfacetgeneratoroptions.html) for more options.
 
 ## Extending
 
