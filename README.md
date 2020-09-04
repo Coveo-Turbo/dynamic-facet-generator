@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 ### Dictionary
 If the dictionary is not defined at the moment you configure the component options, use the [getDictionaryPromise](https://coveo-turbo.github.io/dynamic-facet-generator/interfaces/idynamicfacetgeneratoroptions.html#getdictionarypromise) option.
-That way, instead of passing the facet dictionary as an object, it is being passed as asynchronous function.
+That way, instead of passing the facet dictionary as an object, it is passed as an asynchronous function.
 
 
 ### Transfomer
